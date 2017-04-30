@@ -32,9 +32,10 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <a class="btn btn-success" href="/notebooks/create/@{{selProject.id}}"><i class="fa fa-plus"></i> Create</a>
+                        <a class="btn btn-success" href="/notebooks/create/@{{selProject.id}}"><i
+                                    class="fa fa-plus"></i> Create</a>
                         <div ng-if="selProject.notebook.length > 0">
-                            <h4>Note Books:</h4>
+                            <h4>Notebooks:</h4>
                             <div class="list-group">
                                 <a class="list-group-item"
                                    ng-repeat="notebook in selProject.notebook"
@@ -46,6 +47,20 @@
                         <div ng-if="selProject.notebook.length == 0">
                             <h3>No Notebooks for selected
                                 projects.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary" ng-if="selProject">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            @{{ selProject.projectname }} Files:
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item" ng-repeat="file in selProject.projectfile">
+                                @{{ getLastVersionProjectName(file) }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -78,18 +93,26 @@
             $scope.setSelectedById = function (id) {
                 var selected = $scope.projects.filter(function (proj) {
                     return proj.id == id;
-                })
+                });
 
                 if (angular.isArray(selected) && selected.length > 0)
                     return selected[0];
-            }
+            };
 
             $scope.isSelected = function (project) {
                 if (!$scope.selProject)
                     return false;
                 return project.id == $scope.selProject.id;
-            }
+            };
 
+            $scope.getLastVersionProjectName = function(file)
+            {
+                try {
+                    return file.projectfileversion[file.projectfileversion.length - 1].projectfileversionFile;
+                } catch (exception) {
+                    return null
+                }
+            }
         });
 
     </script>
