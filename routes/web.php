@@ -29,3 +29,33 @@ Route::get('notebooks/create/{project_id}', 'NotebookController@create');
 Route::resource('projects', 'ProjectController');
 
 Auth::routes();
+
+Route::get('test', function(){
+
+    return \App\Project::with('projectfile.projectfileversion')->where('projects.id', 87711)->first();
+    //return \App\ProjectFile::with('projectfileversion')
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

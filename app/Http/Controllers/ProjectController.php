@@ -13,7 +13,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return \App\Project::with('notebook')->get();
+        return \App\Project::with(['notebook','projectfile.projectfileversion'])->get();
     }
 
     /**
