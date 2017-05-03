@@ -58,8 +58,8 @@
                     </div>
                     <div class="panel-body">
                         <div class="list-group">
-                            <a href="#" class="list-group-item" ng-repeat="file in selProject.projectfile">
-                                @{{ getLastVersionProjectName(file) }}
+                            <a href="download/@{{ file.projectfileId }}" class="list-group-item" ng-repeat="file in selProject.projectfile" ng-click="d(file)">
+                               <i class="fa fa-file"></i> @{{ getLastVersionProjectName(file) }}
                             </a>
                         </div>
                     </div>
@@ -73,7 +73,9 @@
     <script>
         app.controller('dashboardCtrl', function ($scope, $http) {
             $scope.running = true;
-
+            $scope.d = function (f) {
+                console.log(f);
+            };
             $scope.init = function (selected) {
                 $scope.running = true;
                 $http.get('/projects')

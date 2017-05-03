@@ -36,6 +36,13 @@ Route::get('test', function(){
     //return \App\ProjectFile::with('projectfileversion')
 });
 
+Route::get('download/{fileId}', function($fileId){
+     $projectFile =  \App\ProjectFile::with('projectfileversion')->findOrFail($fileId);
+     if(isset($projectFile->projectfileversion[0])){
+         var_dump($projectFile->projectfileversion[0]->projectfileversionFile);
+     }
+});
+
 
 
 
