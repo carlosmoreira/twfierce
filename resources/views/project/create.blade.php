@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
+@section('breadcrumb', 'Projects - Add');
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4>Coming Soon</h4>
+                <h4>Can be added :)</h4>
                 <a href="/" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Go Back</a>
             </div>
         </div>

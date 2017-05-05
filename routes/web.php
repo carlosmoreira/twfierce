@@ -12,7 +12,21 @@
 */
 
 Route::get('/', function () {
-    return redirect('/home');
+    return redirect('/dashboard');
+});
+
+Route::get('/dashboard', function(){
+
+    $totalProjects = \App\Project::all()->count();
+    $totalFiles = \App\ProjectFile::all()->count();
+    $totalNotebooks = \App\Notebook::all()->count();
+    $totalUsers = \App\User::all()->count();
+    return view('dashboard.view', [
+        'totalProjects' => $totalProjects,
+        'totalFiles' => $totalFiles,
+        'totalNotebooks' => $totalNotebooks,
+        'totalUsers' => $totalUsers
+    ]);
 });
 
 Route::get('/home', 'HomeController@index');
@@ -30,22 +44,37 @@ Route::resource('projects', 'ProjectController');
 
 Auth::routes();
 
-Route::get('test', function(){
+Route::get('test', function () {
 
     return \App\Project::with('projectfile.projectfileversion')->where('projects.id', 87711)->first();
     //return \App\ProjectFile::with('projectfileversion')
 });
 
-Route::get('download/{fileId}', function($fileId){
-     $projectFile =  \App\ProjectFile::with('projectfileversion')->findOrFail($fileId);
-     if(isset($projectFile->projectfileversion[0])){
-         var_dump($projectFile->projectfileversion[0]->projectfileversionFile);
-     }
+Route::get('download/{fileId}', function ($fileId) {
+    $projectFile = \App\ProjectFile::with(['project', 'projectfileversion'])->findOrFail($fileId);
+
+    $projectDir = $projectFile->project->projectname;
+
+    if (isset($projectFile->projectfileversion[0])) {
+        $filePath = "../resources/projectfiles/" .
+            $projectDir .
+            '/' .
+            $projectFile->projectfileversion[0]->projectfileversionFile;
+        if (File::exists($filePath))
+            return response()->download($filePath);
+        else
+            return Redirect::to('/projects/' . $projectFile->projectId)->with('error', 'Unfortunately we were unable to find the specified file!');
+    }
 });
 
+Route::get('template', function () {
+    return view('templatetest');
+});
 
-
-
+Route::get('users', function(){
+    $users = \App\User::all();
+    return view('user.view', ['users' => $users]);
+})->name('users');
 
 
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
+use Mockery\Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProjectController extends Controller
 {
@@ -45,7 +48,15 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $project = Project::with(['notebook','projectfile.projectfileversion'])->findOrFail($id);
+            return view('project/view', ['project' => $project, 'breadcrumb' => 'project / '.$project->projectname]);
+        }catch (NotFoundHttpException $e){
+            //dd('what');
+            //return redirect('/');
+        }catch (Exception $e){
+
+        }
     }
 
     /**

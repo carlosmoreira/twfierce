@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Notebook;
 use Illuminate\Http\Request;
 use Mockery\Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class NotebookController extends Controller
 {
@@ -50,7 +52,7 @@ class NotebookController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

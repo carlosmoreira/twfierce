@@ -20,4 +20,10 @@ class ProjectFile extends Model
         return $this->hasMany('App\ProjectFileVersion', "projectfileId");
     }
 
+    public function getFileNameAttribute(){
+        if($file = $this->projectFileVersion->first())
+            return $file->projectfileversionFile;
+        return "";
+    }
+
 }

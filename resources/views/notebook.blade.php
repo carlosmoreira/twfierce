@@ -1,10 +1,14 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    View Notebook: {{$notebook->notebookName}}
+@endsection
+
 @section('content')
-    <div class="container">
+
         <div class="row">
             <div class="col-md-12">
-                <a class="btn btn-danger" href="/home?selected={{$notebook->project_id}}"><i class="fa fa-arrow-left"></i> Back To Projects</a>
+                <a class="btn btn-danger" href="/projects/{{$notebook->project_id}}"><i class="fa fa-arrow-left"></i> Back To Projects</a>
                 <hr>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -19,5 +23,5 @@
                 </div>
             </div>
         </div>
-    </div>
+
 @endsection

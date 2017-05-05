@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
+@section('breadcrumb', 'Create Notebook')
+
 @section('content')
-    <div class="container">
+
         <div class="row">
             <div class="col-md-12">
-                <a class="btn btn-danger" href="/home/?selected={{$notebook->project_id}}"> <i class="fa fa-arrow-left"></i>. Back</a>
+                <a class="btn btn-danger" href="/projects/{{$notebook->project_id}}"> <i class="fa fa-arrow-left"></i>. Back</a>
                 <hr>
                 {!! Form::model($notebook, ['action' => ['NotebookController@store', $notebook->id]]) !!}
                 <input type="hidden" name="project_id" value="{{$notebook->project_id}}">
@@ -17,7 +19,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-    </div>
+
 @endsection
 
 @section('footer')

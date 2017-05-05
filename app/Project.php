@@ -15,4 +15,8 @@ class Project extends Model
     public function projectfile(){
         return $this->hasMany('App\ProjectFile', "projectId");
     }
+
+    public function getTotalFilesAttribute(){
+        return $this->projectfile->count();
+    }
 }
