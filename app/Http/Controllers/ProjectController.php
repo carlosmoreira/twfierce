@@ -16,7 +16,7 @@ class ProjectController extends Controller
      */
     public function __construct()
     {
-     g   $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
