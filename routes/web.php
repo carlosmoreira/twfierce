@@ -15,19 +15,7 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/dashboard', function(){
-
-    $totalProjects = \App\Project::all()->count();
-    $totalFiles = \App\ProjectFile::all()->count();
-    $totalNotebooks = \App\Notebook::all()->count();
-    $totalUsers = \App\User::all()->count();
-    return view('dashboard.view', [
-        'totalProjects' => $totalProjects,
-        'totalFiles' => $totalFiles,
-        'totalNotebooks' => $totalNotebooks,
-        'totalUsers' => $totalUsers
-    ]);
-});
+Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::get('/home', 'HomeController@index');
 
