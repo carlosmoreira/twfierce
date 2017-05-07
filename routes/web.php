@@ -110,7 +110,7 @@ Route::get('administration/files/check', function (){
 
 })->name('administration.files.check');
 
-Route::get('/search', 'searchController@globalSearch');
+Route::get('/search', 'SgearchController@globalSearch');
 
 
 
