@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('partials.sidebar', function($view){
-            $view->with('projects', \App\Project::with(['notebook','projectfile.projectfileversion'])->get());
+            $view->with('projects', \App\Project::with(['notebook','projectfile.projectfileversion'])->orderBy('projectname')->get());
         });
     }
 
