@@ -18,7 +18,7 @@ class SearchController extends Controller
     {
         try {
             if (!$request->has('q'))
-                throw new Exception('Nothing to search with');
+                throw new Exception('Please submit search with a value');
 
             $searchString = $request->get('q');
             $notebooks = Notebook::with('projects')->where('notebookContents', 'like', "%$searchString%")
@@ -27,7 +27,7 @@ class SearchController extends Controller
             //return $notebooks;
             return view('search.global', ['notebooks' => $notebooks, 'searchString' => $searchString]);
         } catch (Exception $e) {
-            return view('search.global')->with('error', $e->getMessage());
+            return view('search.global',['searchString' => ''])->with('error', $e->getMessage());
         }
     }
 }

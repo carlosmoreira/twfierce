@@ -59,10 +59,10 @@
 
         <!-- Top Menu Items -->
         <ul class="nav navbar-left top-nav">
-            <li>
+            <li class="hidden-xs">
                 <form action="/search">
                     <div class="input-group" style="max-width: 250px; margin:8px;">
-                        <input name="q" type="text" class="form-control" placeholder="Search for...">
+                        <input name="q" type="text" class="form-control" placeholder="Search for..." required>
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">
                                 <i class="fa fa-search"></i>
@@ -97,6 +97,11 @@
                                   style="display: none;">
                                 {{ csrf_field() }}
                             </form>
+                        </li>
+                        <li>
+                            <a href="/search">
+                                Search
+                            </a>
                         </li>
                         <li>
                             <a href="/projects/create"><i class="fa fa-plus"></i> Add Project</a>
