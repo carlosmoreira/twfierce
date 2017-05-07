@@ -21,9 +21,9 @@
     </div>
     <hr>
 
-    @if (session('error'))
+    @if (isset($error))
         <div class="alert alert-danger">
-            <i class="fa fa-exclamation-circle"></i> {{ session('error') }}
+            <i class="fa fa-exclamation-circle"></i> {{ $error }}
         </div>
     @else
         <div class="row">
