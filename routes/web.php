@@ -38,6 +38,15 @@ Route::get('test', function () {
     //return \App\ProjectFile::with('projectfileversion')
 });
 
+Route::get('template', function () {
+    return view('templatetest');
+});
+
+Route::get('users', function(){
+    $users = \App\User::all();
+    return view('user.view', ['users' => $users]);
+})->name('users');
+
 Route::get('download/{fileId}', function ($fileId) {
     $projectFile = \App\ProjectFile::with(['project', 'projectfileversion'])->findOrFail($fileId);
 
@@ -55,15 +64,51 @@ Route::get('download/{fileId}', function ($fileId) {
     }
 });
 
-Route::get('template', function () {
-    return view('templatetest');
-});
+Route::get('administration/files/check', function (){
+    //->where('projectid',103502)
+   $serverFiles =  \App\ProjectFile::with('projectfileversion')->get();
+    $missing = [];
+    $success = 0;
+    $fails = 0;
+    $missingCategories = [];
+    /**
+     * @var \App\ProjectFile $file
+     */
+   foreach($serverFiles as $file){
+       $directory = $file->project->projectname;
+       $fileName = $file->projectfileversion[0]->projectfileversionFile;
 
-Route::get('users', function(){
-    $users = \App\User::all();
-    return view('user.view', ['users' => $users]);
-})->name('users');
+       $containsSubDirectory = str_contains($fileName,"Teamwork Files");
 
+       if($containsSubDirectory){
+           $pathArray = explode('/', $fileName);
+           unset($pathArray[0]);
+           unset($pathArray[1]);
+           unset($pathArray[2]);
+           $fileName = implode("/",$pathArray);
+       }
+
+       $path = "../resources/projectfiles/" . $directory . "/" . $fileName;
+
+       if(!File::exists($path)){
+           $tmpFile = new stdClass();
+           $tmpFile->file = $fileName;
+           $tmpFile->project = $directory;
+           $missing[] = $tmpFile;
+           $fails++;
+           if(isset($missingCategories[$directory]))
+               $missingCategories[$directory]++;
+           else
+               $missingCategories[$directory] = 1;
+       }else
+           $success++;
+   }
+
+   //dd($missingCategories);
+
+   return view('administration.files-check', ['files' => $missing, 'success' => $success, 'fails' => $fails, 'categories' => $missingCategories]);
+
+})->name('administration.files.check');
 
 
 
