@@ -56,90 +56,24 @@
                 {{ config('app.name', 'Laravel') }}
             </a>
         </div>
+
         <!-- Top Menu Items -->
+        <ul class="nav navbar-left top-nav">
+            <li>
+                <form action="/search">
+                    <div class="input-group" style="max-width: 250px; margin:8px;">
+                        <input name="q" type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </li>
+        </ul>
         <ul class="nav navbar-right top-nav">
-            {{--<li class="dropdown">--}}
-                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b--}}
-                            {{--class="caret"></b></a>--}}
-                {{--<ul class="dropdown-menu message-dropdown">--}}
-                    {{--<li class="message-preview">--}}
-                        {{--<a href="#">--}}
-                            {{--<div class="media">--}}
-                                    {{--<span class="pull-left">--}}
-                                        {{--<img class="media-object" src="http://placehold.it/50x50" alt="">--}}
-                                    {{--</span>--}}
-                                {{--<div class="media-body">--}}
-                                    {{--<h5 class="media-heading"><strong>John Smith</strong>--}}
-                                    {{--</h5>--}}
-                                    {{--<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>--}}
-                                    {{--<p>Lorem ipsum dolor sit amet, consectetur...</p>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="message-preview">--}}
-                        {{--<a href="#">--}}
-                            {{--<div class="media">--}}
-                                    {{--<span class="pull-left">--}}
-                                        {{--<img class="media-object" src="http://placehold.it/50x50" alt="">--}}
-                                    {{--</span>--}}
-                                {{--<div class="media-body">--}}
-                                    {{--<h5 class="media-heading"><strong>John Smith</strong>--}}
-                                    {{--</h5>--}}
-                                    {{--<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>--}}
-                                    {{--<p>Lorem ipsum dolor sit amet, consectetur...</p>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="message-preview">--}}
-                        {{--<a href="#">--}}
-                            {{--<div class="media">--}}
-                                    {{--<span class="pull-left">--}}
-                                        {{--<img class="media-object" src="http://placehold.it/50x50" alt="">--}}
-                                    {{--</span>--}}
-                                {{--<div class="media-body">--}}
-                                    {{--<h5 class="media-heading"><strong>John Smith</strong>--}}
-                                    {{--</h5>--}}
-                                    {{--<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>--}}
-                                    {{--<p>Lorem ipsum dolor sit amet, consectetur...</p>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="message-footer">--}}
-                        {{--<a href="#">Read All New Messages</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            {{--<li class="dropdown">--}}
-                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b--}}
-                            {{--class="caret"></b></a>--}}
-                {{--<ul class="dropdown-menu alert-dropdown">--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li class="divider"></li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">View All</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
+
             <!-- Authentication Links -->
             @if (Auth::guest())
                 <li><a href="{{ route('login') }}">Login</a></li>

@@ -12,6 +12,6 @@ class Notebook extends Model
 
     public function projects()
     {
-        return $this->belongsTo('App\Project');
+        return $this->belongsTo('App\Project', 'project_id');
     }
 }
