@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    protected $fillable = ['projectname','companyId'];
+
+    public $timestamps = false;
 
     public function notebook()
     {

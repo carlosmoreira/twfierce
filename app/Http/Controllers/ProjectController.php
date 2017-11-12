@@ -36,7 +36,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('project.create');
+        $project = new Project();
+        return view('project.create', ['project' => $project]);
     }
 
     /**
@@ -47,7 +48,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestsOnly = $request->only(['projectname']);
+        //Set Default values, so sql does not need to be modified
+        $requestsOnly['companyId'] = 40216;
+        $project = Project::create($requestsOnly);
+        return redirect('/dashboard');
     }
 
     /**
